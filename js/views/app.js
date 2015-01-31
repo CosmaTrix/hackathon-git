@@ -1,14 +1,14 @@
 /**
  * app.js view
  */
-define(['backbone', 'views/stream', 'views/visuals'], function (Backbone, HomeView, VisualsView) {
+define(['backbone', 'views/stream', 'views/visuals'], function (Backbone, StreamView, VisualsView) {
 
 	return Backbone.View.extend({
 
 		el: 'body',
 
 		initialize: function () {
-			new HomeView({
+			new StreamView({
 				el: this.$('#stream')
 			});
 

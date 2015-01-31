@@ -1,48 +1,76 @@
 /**
  * visuals.js view
  */
-define(['backbone', 'openhose'], function (Backbone, Openhose) {
+define(['backbone', 'openhose', 'models/metrics'], function (Backbone, Openhose, MetricsModel) {
 
 	return Backbone.View.extend({
 
 		interval: undefined,
 
 		initialize: function() {
-			this.render();
-			this.interval = setInterval(_.bind(this.render, this), 60 * 1000);
+			this.metrics = new MetricsModel();
+			this.listenTo(this.metrics, 'sync', this.render);
+
+			this.fetchData();
+
+			this.interval = setInterval(_.bind(this.fetchData, this), 60 * 1000);
+		},
+
+		fetchData: function() {
+			this.metrics.fetch();
 		},
 
 		render: function() {
-			this.renderChart();
-			this.getData();
+			console.log(this.metrics.toJSON());
+
+			this.renderImpressions();
+			this.renderVolume();
 		},
 
-		getData: function() {
-			if (!this.line.metrics[0].collection.length) {
-				setTimeout(_.bind(this.getData, this), 1000);
-			} else {
-				console.log(this.line.metrics[0].collection.toJSON());
-			}
+		getStreamOptions: function() {
+			return {
+				id: App.config.streamId,
+				organizationToken: App.config.userToken,
+				organizationId: App.config.userId
+			};
 		},
 
-		renderChart: function() {
+		getStreamPeriod: function() {
+			return {
+				start: Openhose.moment().subtract(15, 'minutes'),
+				end: Openhose.moment(),
+				bucket: '1m'
+			};
+		},
+
+		renderImpressions: function() {
 			this.line = new Openhose.Widget.Line({
-				el: this.el,
-				stream: {
-					id: '525530f4693be8226e000009',
-					organizationToken: App.config.userToken,
-					organizationId: App.config.userId
-				},
+				el: this.$('.impressions'),
+				stream: this.getStreamOptions(),
 				data: {
 					metrics: {
-						ids: ['impressions', 'volume']
+						ids: ['impressions']
 					}
 				},
-				period: {
-					start: Openhose.moment().subtract(15, 'minutes'),
-					end: Openhose.moment(),
-					bucket: '1m'
+				period: this.getStreamPeriod(),
+				filter: {
+					entities: ["tags:philips"]
+				}
+			});
+
+			this.line.render();
+		},
+
+		renderVolume: function() {
+			this.line = new Openhose.Widget.Line({
+				el: this.$('.volume'),
+				stream: this.getStreamOptions(),
+				data: {
+					metrics: {
+						ids: ['volume']
+					}
 				},
+				period: this.getStreamPeriod(),
 				filter: {
 					entities: ["tags:philips"]
 				}
@@ -54,4 +82,3 @@ define(['backbone', 'openhose'], function (Backbone, Openhose) {
 	});
 
 });
-
