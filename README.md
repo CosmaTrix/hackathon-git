@@ -6,11 +6,12 @@ Project presented for Girls in Tech NL Hackathon - FIRST PRIZE
 [Concept.pdf](https://raw.githubusercontent.com/CosmaTrix/hackathon-git/master/concept.pdf)
 
 
-## APIs
-Google Cloud Platform,
-Bottlenose,
-Philips Hue API,
-Backbone
+## Technologies used
+Google App Engine, 
+Bottlenose API, 
+Philips Hue API, 
+Backbone.js,
+Python
 
 
 ## Concept
