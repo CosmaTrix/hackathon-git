@@ -80,10 +80,15 @@ class MainHandler(webapp2.RequestHandler):
         time.sleep(0.1)
 
     def get(self):
-        self.response.out.write("Method GET not supported")
+        fh = open("index.html", "r")
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.out.write(fh.read())
 
     def post(self):
         jsonstring = self.request.body
+        print "REQUEST"
+        print jsonstring
+        print "============="
         data = json.loads(jsonstring)
 
         values = data.get("values", [])

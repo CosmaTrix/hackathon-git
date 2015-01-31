@@ -20,7 +20,20 @@ define(['backbone', 'openhose', 'models/metrics'], function (Backbone, Openhose,
 			this.metrics.fetch();
 		},
 
-		render: function() {
+		render: function(collection) {
+            var data = JSON.stringify(collection.toJSON());
+
+			$.ajax({
+                url: '/',
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                data: data,
+                dataType: 'json',
+                success: function() {
+
+                }
+            });
+
 			this.renderImpressions();
 			this.renderVolume();
 
