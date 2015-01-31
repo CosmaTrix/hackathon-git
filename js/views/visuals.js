@@ -21,10 +21,10 @@ define(['backbone', 'openhose', 'models/metrics'], function (Backbone, Openhose,
 		},
 
 		render: function() {
-			console.log(this.metrics.toJSON());
-
 			this.renderImpressions();
 			this.renderVolume();
+
+			App.Vent.trigger('changeMood');
 		},
 
 		getStreamOptions: function() {

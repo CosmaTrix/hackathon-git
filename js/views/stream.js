@@ -33,13 +33,13 @@ define([
 
 		emptyStream: function() {
 			// empty container
-			this.$('ul').empty();
+			this.$('.liveTweetsContainer').empty();
 		},
 
 		renderStream: function(streamModel) {
 			// format data
 			var data = streamModel.toJSON();
-			data.published = moment(data.published).format('DD-MM-YYYY');
+			data.published = moment(data.published).format('DD-MM-YYYY HH:MM');
 
 			// render data
 			this.$('.liveTweetsContainer').append(_.template(streamTemplate, data));
