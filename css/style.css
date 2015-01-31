@@ -1,0 +1,130 @@
+body {
+
+    font-size: 19px;
+    font-family: HelveticaNeueETW01-55Rg;
+    color: rgba(255, 255, 255, 1);
+    background-color: #222222;
+}
+
+section {
+    margin: 0 auto;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 1);
+    height: 100%;
+    display: inline-block;
+    min-height: 500px;
+    padding-right: 10%;
+    padding-left: 10%;
+
+    vertical-align: middle;
+    display: inline-block;
+    padding-top: 5em;
+    padding-bottom: 5em;
+}
+
+h1 {
+    font-family: 'DINNextRoundedLTW01-Bol';
+    font-size: 5.105em;
+    text-align: center;
+    width: 100%;
+    line-height: 800px;
+    height: 800px;
+}
+
+h2 {
+    font-family: 'DINNextRoundedLTW01-Bol';
+    font-size: 3em;
+    text-align: left;
+    width: 100%;
+}
+
+p.intro {
+    font-family: HelveticaNeueETW02-45Lt;
+    font-size: 1.368em;
+    border-top: 1px;
+    border-bottom: 1px;
+    padding: 1.154em;
+    text-align: center;
+    border-style: solid;
+    line-height: 1.5em;
+    margin: 1.038em 0px;
+    color: rgba(255, 255, 255, 1);
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.421em;
+    color: rgba(255, 255, 255, 1);
+    margin: 0px 0px 1.421em 0px;
+}
+
+p.pullquote {
+    padding-left: 10px;
+    border-style: solid;
+    border-left-width: 3px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 1em;
+    line-height: 1.421em;
+    margin: 0px 0px 1.421em 0px;
+}
+
+p.author {
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: 27px;
+}
+
+a {
+    color: #FF1177;
+    text-decoration: none;
+
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 90%;
+    }
+
+    h1 {
+        font-size: 3.75em;
+        line-height: 0.929em;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    p.pullquote {
+        font-size: 16px;
+    }
+
+}
+
+hr.gradient-rainbow {
+    width: 100%;
+    height: 4px;
+    color: #2393a7;
+
+    background: -moz-linear-gradient(left, red, orange, yellow, green,
+    blue, indigo, violet);
+    background: -webkit-gradient(linear, left center, right center, from(red),
+    color-stop(14%, orange), color-stop(28%, yellow), color-stop(42%, green),
+    color-stop(56%, blue), color-stop(70%, indigo), to(violet));
+    background: -o-linear-gradient(left, red, orange, yellow, green,
+    blue, indigo, violet);
+    background: -ms-linear-gradient(left, red, orange, yellow, green,
+    blue, indigo, violet);
+    display: inline-block;
+    border: none;
+    line-height: 4px;
+    margin: 0;
+    float: left;
+}
+
+section.whiteBg {
+    background-color: #eeeeee
+}
