@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import time
+from urlparse import urljoin
 import webapp2
 import json
 import requests
@@ -30,12 +31,15 @@ class MainHandler(webapp2.RequestHandler):
 
     def __init__(self, *args, **kwargs):
         super(MainHandler, self).__init__(*args, **kwargs)
-        self.left_light = "http://{0}/api/newdeveloper/lights/1/state".format(
-            settings.PHILIPS_HUE_IP)
-        self.centr_light = "http://{0}/api/newdeveloper/lights/3/state".format(
-            settings.PHILIPS_HUE_IP)
-        self.right_light = "http://{0}/api/newdeveloper/lights/1/state".format(
-            settings.PHILIPS_HUE_IP)
+        self.lights = {
+            0: "http://{0}/api/newdeveloper/lights/1/".format(
+                settings.PHILIPS_HUE_IP),
+            1: "http://{0}/api/newdeveloper/lights/3/".format(
+                settings.PHILIPS_HUE_IP),
+            2: "http://{0}/api/newdeveloper/lights/2/".format(
+                settings.PHILIPS_HUE_IP),
+        }
+        self.last_light = 2
 
     def __dict_for(self, hue_color, bright):
         return {
@@ -44,6 +48,36 @@ class MainHandler(webapp2.RequestHandler):
             "bri": bright,
             "hue": hue_color
         }
+
+    def __request_dict_from_resp(self, data):
+        return {
+            "on": data["state"]["on"],
+            "sat": data["state"]["sat"],
+            "br": data["state"]["bri"],
+            "hue": data["state"]["hue"],
+        }
+
+    def __sequence_lights(self, data):
+        resp = requests.get(self.lights[1])
+        data_1 = json.loads(resp.text)
+        requests.put(urljoin(self.lights[2], 'state'), json.dumps(
+            self.__request_dict_from_resp(data_1)))
+
+        resp = requests.get(self.lights[0])
+        data_0 = json.loads(resp.text)
+        requests.put(urljoin(self.lights[1], 'state'), json.dumps(
+            self.__request_dict_from_resp(data_0)))
+
+        requests.put(urljoin(self.lights[0], 'state'), json.dumps(data))
+
+    def __turn_lights_off(self):
+        off_data = json.dumps({"on": False})
+        requests.put(urljoin(self.lights[0], 'state'), off_data)
+        time.sleep(0.1)
+        requests.put(urljoin(self.lights[1], 'state'), off_data)
+        time.sleep(0.1)
+        requests.put(urljoin(self.lights[2], 'state'), off_data)
+        time.sleep(0.1)
 
     def get(self):
         self.response.out.write("Method GET not supported")
@@ -76,17 +110,17 @@ class MainHandler(webapp2.RequestHandler):
 
         for i in range(len(list_impr)):
             json_dict = self.__dict_for(list_impr[i], list_vol[i])
-            requests.put(self.left_light, json.dumps(json_dict))
+            self.__sequence_lights(json_dict)
             json_dict["count"] = i
             generated = response.get("generated", [])
             generated.append(json_dict)
             response["generated"] = generated
             time.sleep(data.get("interval", 0.5))
 
+        self.__turn_lights_off()
         self.response.headers['Content-Type'] = 'application/json'
         response["status"] = "OK"
         self.response.out.write(json.dumps(response))
-        requests.put(self.left_light, json.dumps({"on": False}))
 
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
