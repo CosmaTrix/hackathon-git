@@ -29,15 +29,13 @@ define(['backbone', 'openhose', 'models/metrics'], function (Backbone, Openhose,
                 contentType: "application/json; charset=utf-8",
                 data: data,
                 dataType: 'json',
-                success: function() {
-
+                success: function(response) {
+                    App.Vent.trigger('changeMood', response.generated);
                 }
             });
 
 			this.renderImpressions();
 			this.renderVolume();
-
-			App.Vent.trigger('changeMood');
 		},
 
 		getStreamOptions: function() {
