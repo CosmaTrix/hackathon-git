@@ -30,7 +30,7 @@ h1 {
     font-size: 5.105em;
     text-align: center;
     width: 100%;
-    line-height: 800px;
+    line-height: 600px;
     height: 800px;
 }
 
@@ -56,6 +56,8 @@ p {
 
 .liveTweet p {
     margin: 0px 0px 0.5em 0px;
+    width: 100%;
+    font-family: 1.3em;
 }
 
 .liveTweet img {
@@ -68,9 +70,10 @@ p {
 
 .liveTweet {
     display: inline-block;
-    width: 100%;
+    width: 60%;
     padding-top: 30px;
     padding-bottom: 30px;
+    border-bottom: 1px solid #fff;
 }
 
 .liveTweet span {
