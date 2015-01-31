@@ -1,4 +1,10 @@
+/**
+ * stream.js model
+ */
+define(['backbone'], function (Backbone) {
 
-App.models.Stream = Backbone.Model.extend({
+	return Backbone.Model.extend({
+
+	});
 
 });

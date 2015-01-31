@@ -1,16 +1,20 @@
+/**
+ * streams.js collection
+ */
+define(['backbone', 'models/stream'], function (Backbone, StreamModel) {
 
-App.collections.Streams = Backbone.Collection.extend({
+	return Backbone.Collection.extend({
 
-	streamId: '525530f4693be8226e000009',
+		model: StreamModel,
 
-	model: App.models.Stream,
+		url: function() {
+			return 'http://streams.bottlenose.com/3/activities?limit=10&userId=' + App.config.userId + '&userToken=' + App.config.userToken + '&streamId=' + App.config.streamId + '&filter[entities][]=tags:philips'
+		},
 
-	url: function() {
-		return 'http://streams.bottlenose.com/3/activities?limit=10&userId=' + App.config.userId + '&userToken=' + App.config.userToken + '&streamId=' + this.streamId + '&filter[entities][]=tags:philips'
-	},
+		parse: function(response) {
+			return response.result;
+		}
 
-	parse: function(response) {
-		return response.result;
-	}
+	});
 
 });
