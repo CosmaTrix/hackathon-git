@@ -20,10 +20,10 @@ import json
 import requests
 import settings
 
-GREEN = 21845
+GREEN = 21845.
 RED = 0
 
-BRIGHTNESS_MAX = 255
+BRIGHTNESS_MAX = 255.
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -53,10 +53,8 @@ class MainHandler(webapp2.RequestHandler):
         data = json.loads(jsonstring)
 
         values = data.get("values", [])
-        min_impr = 0
-        max_impr = 0
-        min_vol = 0
-        max_vol = 0
+        max_impr = 1
+        max_vol = 1
         tmp_impr = []
         tmp_vol = []
 
@@ -65,30 +63,30 @@ class MainHandler(webapp2.RequestHandler):
             tmp_impr.append(impressions)
             volume = value.get("volume")
             tmp_vol.append(volume)
-            min_impr = min(min_impr, impressions)
             max_impr = max(max_impr, impressions)
-            min_vol = min(min_vol, volume)
             max_vol = max(max_vol, volume)
 
-        rate_impr = GREEN / (max_impr - min_impr)
-        list_impr = [(impr - min_impr) * rate_impr for impr in tmp_impr]
+        rate_impr = GREEN / max_impr
+        list_impr = [int(impr * rate_impr) for impr in tmp_impr]
 
-        rate_vol = BRIGHTNESS_MAX / (max_vol - min_vol)
-        list_vol = [(vol - min_vol)* rate_vol for vol in tmp_vol]
+        rate_vol = BRIGHTNESS_MAX / max_vol
+        list_vol = [int(vol * rate_vol) for vol in tmp_vol]
+
+        response = {}
 
         for i in range(len(list_impr)):
             json_dict = self.__dict_for(list_impr[i], list_vol[i])
             requests.put(self.left_light, json.dumps(json_dict))
-            time.sleep(0.5)
-
-        requests.put(self.left_light, json.dumps({"on": False}))
+            json_dict["count"] = i
+            generated = response.get("generated", [])
+            generated.append(json_dict)
+            response["generated"] = generated
+            time.sleep(data.get("interval", 0.5))
 
         self.response.headers['Content-Type'] = 'application/json'
-        obj = {
-            'request': 'OK',
-        }
-        self.response.out.write(json.dumps(obj))
-
+        response["status"] = "OK"
+        self.response.out.write(json.dumps(response))
+        requests.put(self.left_light, json.dumps({"on": False}))
 
 
 app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)

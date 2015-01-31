@@ -1,3 +1,10 @@
-.DS_Store
 Thumbs.db
-/.idea
+# Hidden files
+.*
+
+*.pyc
+*.*~
+*.swp
+*.swo
+*.sqlite*
+*.save
