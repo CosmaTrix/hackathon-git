@@ -1,6 +1,6 @@
 Thumbs.db
-# Hidden files
-.*
+/.idea
+.DS_Store
 
 *.pyc
 *.*~
