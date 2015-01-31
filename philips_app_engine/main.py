@@ -86,9 +86,6 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         jsonstring = self.request.body
-        print "REQUEST"
-        print jsonstring
-        print "============="
         data = json.loads(jsonstring)
 
         values = data.get("values", [])
