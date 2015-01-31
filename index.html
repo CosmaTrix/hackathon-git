@@ -8,110 +8,60 @@
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
 
-    <!-- // Change these to better suit your project -->
-    <title>GIT Hackaton</title>
-    <meta name="description" content="Girls in Tech Hackathon">
+	<!-- // Change these to better suit your project -->
+	<title>GIT Hackaton</title>
+	<meta name="description" content="Girls in Tech Hackathon">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
 
-    <!-- // CSS Reset – http://meyerweb.com/eric/tools/css/reset/ -->
-    <link rel="stylesheet" type="text/css" href="css/reset.css" media="all">
+	<!-- // CSS Reset – http://meyerweb.com/eric/tools/css/reset/ -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css" media="all">
+	<link rel="stylesheet" href="css/vendor/openhose.css"/>
 
-
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
-    <script type="text/javascript" src="http://fast.fonts.net/jsapi/81ed4f3d-5320-4a76-9a9d-e2a5cce956e7.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+	<script type="text/javascript" src="http://fast.fonts.net/jsapi/81ed4f3d-5320-4a76-9a9d-e2a5cce956e7.js"></script>
 
 </head>
 
 <body>
-<section id="section1">
-    <h1>
-        #philipshue
-    </h1>
+	<section id="section1">
+		<h1>
+			#philipshue
+		</h1>
+	</section>
 
+	<hr class="gradient-rainbow"/>
 
-</section>
+	<div id="line-charts">
+		<section id="section2" class="whiteBg">
+			<h2>
+				Impressions
+			</h2>
+			<p>Times a user is served a Tweet in timeline or search results</p>
+			<div class="impressions-chart"></div>
+		</section>
 
-<hr class="gradient-rainbow"/>
-<section id="section2" class="whiteBg">
-    <h2>
-        Impressions
-    </h2>
+		<section id="section3" class="whiteBg">
+			<h2>
+				Volume
+			</h2>
 
-    <p>Times a user is served a Tweet in timeline or search results</p>
-</section>
+			<p>Amount of tweets in 60 seconds</p>
+			<div class="volume-chart"></div>
+		</section>
+	</div>
 
-<section id="section3" class="whiteBg">
-    <h2>
-        Volume
-    </h2>
+	<section id="stream" class="whiteBg">
+		<h2>
+			Live Tweets
+		</h2>
 
-    <p>Amount of tweets in 60 seconds</p>
+		<div class="liveTweetsContainer"></div>
+	</section>
 
-</section>
-<section id="section4" class="whiteBg">
-    <h2>
-        Live Tweets
-    </h2>
-
-    <div class="liveTweetsContainer">
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-        <div class="liveTweet">
-            <p>@GuidonvdBerg ik ben er bij morgen!! Eens Kijken of we iets moois kunnen maken met de #philipshue voor
-                ONS @PSV</p>
-            <img src="http://pbs.twimg.com/profile_images/506807048156495872/0IhBqCFv_normal.jpeg" alt="tweet author"/>
-            <span>@KHuijbregts</span>
-        </div>
-    </div>
-
-
-</section>
-
-<hr class="gradient-rainbow"/>
-
+	<script data-main="js/main" src="js/vendor/require.js"></script>
 
 </body>
 </html>
