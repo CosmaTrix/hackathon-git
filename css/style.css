@@ -54,6 +54,32 @@ p {
     width: 100%;
 }
 
+.liveTweet p {
+    margin: 0px 0px 0.5em 0px;
+}
+
+.liveTweet img {
+    display: inline-block;
+    float: left;
+    margin-right: 30px;
+    margin-top: 7px;
+    border-radius: 50%;
+}
+
+.liveTweet {
+    display: inline-block;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.liveTweet span {
+    display: inline-block;
+    line-height: 60px;
+    font-family: 'DINNextRoundedLTW01-Reg';
+    color: #222222;
+}
+
 
 a {
     color: #FF1177;
